@@ -6,7 +6,7 @@ const typeDefs = `
 type Product {
     id : ID!
     name : String!
-
+    
 }
 
 type Order {
@@ -25,11 +25,24 @@ type Client {
 
 }
 
-
 type Query {
 
     products:[Product]
     clients:[Client]
+    clientById(id: ID!): Client
+    productById(id: ID!): Product
+
+}
+
+type Mutation {
+
+    addProduct(name: String!): Product
+
+    addClient(name: String): Client
+
+    deleteProduct(id: ID!): Product
+
+    deleteClient(id: ID! ): Client
 
 }
 

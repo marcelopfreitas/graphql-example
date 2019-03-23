@@ -1,5 +1,5 @@
 
-const products = [
+let products = [
 
     {
         "id":1,
@@ -15,7 +15,7 @@ const products = [
     }        
 ];
 
-const orders = [
+let orders = [
     {
         "id":1,
         "total":100.0,
@@ -34,7 +34,7 @@ const orders = [
 ];
 
 
-const clients =[
+let clients =[
     {
         "id":1,
         "name":"client-1",
@@ -56,7 +56,76 @@ const resolvers = {
         },
         products: ()=> {
             return products;
+        },
+
+        clientById: (root, args)=> {
+            return clients.find( (client)=> {
+                return client.id === Number.parseInt(args.id);
+            });
+        },
+        productById: (root, args)=> {
+            return products.find( (product)=> {
+                return product.id ===  Number.parseInt(args.id);
+            });
         }
+    },
+    
+    Mutation: {
+        addProduct: (root, args)=> {
+
+            const product = {
+                id: ( products.length + 1 ),
+                name : args.name
+            } ;
+
+            products.push(product);
+
+            return product;
+            
+        },
+        addClient: (root, args)=> {
+
+            const client = {
+                id: ( clients.length + 1 ),
+                name : args.name
+            } ;
+
+            clients.push(client);
+
+            return client;
+        },
+        deleteProduct: (root, args)=> {
+
+            let deletedProduct;
+
+            products = products.filter( (product)=> {
+                if(product.id === Number.parseInt(args.id)) {
+                    deletedProduct = product;
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            
+            return deletedProduct;
+        },
+        deleteClient: (root, args)=> {
+
+            let deletedClient;
+
+            clients = clients.filter( (client)=> {
+                if(client.id === Number.parseInt(args.id)) {
+                    deletedClient = client;
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+
+            return deletedClient;            
+
+        }                  
 
     }
 };
