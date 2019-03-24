@@ -44,7 +44,6 @@ class Clients {
         return deletedClient;            
     }
 }
-
 class Client {
     constructor(id , name){
         this.id = id;
@@ -63,16 +62,7 @@ class Order {
         this.data   = data;
         this.products = products;
     }
-    products() {
-        return this.productIds.map( (order) => {
-            return new Order(order.id,order.total,order.data,order.products.map((id)=>{
-                return products.getById(Number.parseInt(id));
-            }));
-        });
-    }
-    
 }
-
 class Orders {
     constructor() {
         this.list = [
