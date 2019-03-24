@@ -13,15 +13,21 @@ type Order {
 
     id: ID!
     total:Float!
+    data:String!
     products: [Product!]!
-
 } 
 
 type Client {
 
     id:ID!
     name: String!
-    orders:[Order]
+    findOrderByDate(period:Period):[Order]
+}
+
+input Period {
+
+    start:String!
+    end:String!
 
 }
 
