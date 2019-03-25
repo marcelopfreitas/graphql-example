@@ -18,7 +18,7 @@ class Clients {
         });
     }
     getById(id) {
-        return list.find( (client)=> {
+        return this.list.find( (client)=> {
             return client.id === id;
         });
     }
